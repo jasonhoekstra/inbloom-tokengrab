@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-        const CLIENT_ID = 'EtftTrHliO';
-        const CLIENT_SECRET = 'k0ENQvVcaDSlRYVwBZrArF7nrA8aXma17N615qoz33FTMPBV';
+        const CLIENT_ID = '';
+        const CLIENT_SECRET = '';
 
         const REDIRECT_URI = 'http://localhost/tokengrab/';
         const AUTHORIZATION_ENDPOINT = 'https://api.sandbox.slcedu.org/api/oauth/authorize';
