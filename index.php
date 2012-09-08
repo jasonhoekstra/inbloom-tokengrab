@@ -19,8 +19,6 @@ else {
 
   $url = 'https://api.sandbox.slcedu.org/api/oauth/token?client_id=' . CLIENT_ID . '&client_secret=' . CLIENT_SECRET . '&grant_type=authorization_code&redirect_uri=' . REDIRECT_URI . '&code=' . $_GET['code'];
 
-//$url = 'https://api.sandbox.slcedu.org/api/oauth/token?client_id=' . CLIENT_ID . '&client_secret=' . CLIENT_SECRET . '&grant_type=authorization_code&code='. $_GET['code'];
-//open connection
   $ch = curl_init();
 
 //set the url, number of POST vars, POST data
@@ -46,9 +44,6 @@ else {
 // set the session with the access_token and verification code
   $_SESSION['access_token'] = $result->access_token;
   $_SESSION['code'] = $_GET['code'];
-
-// redirect to the start page of the application
-// header('Location: ' . 'start.php');
 
   if ($result->error != '') {
     echo 'Error: ' . $result->error . '<br/><br/>';
