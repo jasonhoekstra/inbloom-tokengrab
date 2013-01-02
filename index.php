@@ -60,10 +60,10 @@ else {
     echo '<h3>Starting API endpoints:</h3>';
     echo '<ul>';
     echo '<li><a href="http://dev.slcedu.org/docs/adding-your-application-sli/adding-user-authentication-applications/checking-session" target="_new">https://api.sandbox.slcedu.org/api/rest/system/session/check</a></li>';
-    echo '<li><a href="http://dev.slcedu.org/docs/sli-rest-api-resources/resource-uris/home" target="_new">https://api.sandbox.slcedu.org/api/rest/home</a></li>';
-    echo '<li><a href="http://dev.slcedu.org/docs/sli-rest-api-resources/resource-uris/sections" target="_new">https://api.sandbox.slcedu.org/api/rest/sections</a></li>';
-    echo '<li><a href="http://dev.slcedu.org/docs/sli-rest-api-resources/resource-uris/students" target="_new">https://api.sandbox.slcedu.org/api/rest/students</a></li>';
-    echo '<li><a href="http://dev.slcedu.org/docs/sli-rest-api-resources/resource-uris/grades" target="_new">https://api.sandbox.slcedu.org/api/rest/grades</a></li>';
+    echo '<li><a href="http://dev.slcedu.org/docs/sli-rest-api-resources/resource-uris/home" target="_new">https://api.sandbox.slcedu.org/api/rest/v1/home</a></li>';
+    echo '<li><a href="http://dev.slcedu.org/docs/sli-rest-api-resources/resource-uris/sections" target="_new">https://api.sandbox.slcedu.org/api/rest/v1/sections</a></li>';
+    echo '<li><a href="http://dev.slcedu.org/docs/sli-rest-api-resources/resource-uris/students" target="_new">https://api.sandbox.slcedu.org/api/rest/v1/students</a></li>';
+    echo '<li><a href="http://dev.slcedu.org/docs/sli-rest-api-resources/resource-uris/grades" target="_new">https://api.sandbox.slcedu.org/api/rest/v1/grades</a></li>';
     echo '</ul>';
     echo '</body></html>';
   }
