@@ -1,12 +1,19 @@
 <?php
 session_start();
 
-        const CLIENT_ID = '';
-        const CLIENT_SECRET = '';
+const CLIENT_ID = '';
+const CLIENT_SECRET = '';
 
-        const REDIRECT_URI = 'http://localhost/tokengrab/';
-        const AUTHORIZATION_ENDPOINT = 'https://api.sandbox.slcedu.org/api/oauth/authorize';
-        const TOKEN_ENDPOINT = 'https://api.sandbox.slcedu.org/api/oauth/token';
+const REDIRECT_URI = 'http://localhost/tokengrab/';
+const AUTHORIZATION_ENDPOINT = 'https://api.sandbox.slcedu.org/api/oauth/authorize';
+const TOKEN_ENDPOINT = 'https://api.sandbox.slcedu.org/api/oauth/token';
+
+// Note:  Windows PHP instances have issues with the SSL certificate that is returned from the sandbox.
+//        If you are running Windows against the sandbox, you may want to switch the flag below to TRUE.
+//        Use at your own risk and ONLY in sandbox (not production) usages of the API.  In production,
+//        please fix the issue with CA certifications on your server and set this flag to FALSE.
+const DISABLE_SSL_CHECKS = FALSE;
+
 
 
 // If the session verification code is not set, redirect to the SLC Sandbox authorization endpoint
@@ -26,6 +33,13 @@ else {
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
   curl_setopt($ch, CURLOPT_HEADER, 'Content-Type: application/vnd.slc+json');
   curl_setopt($ch, CURLOPT_HEADER, 'Accept: application/vnd.slc+json');
+
+if (DISABLE_SSL_CHECKS == TRUE) {
+// WARNING: this would prevent curl from detecting a 'man in the middle' attack
+// See note in settings.php 
+  curl_setopt ($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+  curl_setopt ($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+}
 
 //execute post
   $result = curl_exec($ch);
