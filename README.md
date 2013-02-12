@@ -1,4 +1,4 @@
-SLC Token Endpoint Grabber
+inBloom Token Endpoint Grabber
 --------------------------
 
 This is a web based utility designed to issue back an OAuth user

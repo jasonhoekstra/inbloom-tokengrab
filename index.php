@@ -1,30 +1,23 @@
 <?php
 session_start();
 
-const CLIENT_ID = '';
-const CLIENT_SECRET = '';
+        const CLIENT_ID = '';
+        const CLIENT_SECRET = '';
 
-const REDIRECT_URI = 'http://localhost/tokengrab/';
-const AUTHORIZATION_ENDPOINT = 'https://api.sandbox.slcedu.org/api/oauth/authorize';
-const TOKEN_ENDPOINT = 'https://api.sandbox.slcedu.org/api/oauth/token';
-
-// Note:  Windows PHP instances have issues with the SSL certificate that is returned from the sandbox.
-//        If you are running Windows against the sandbox, you may want to switch the flag below to TRUE.
-//        Use at your own risk and ONLY in sandbox (not production) usages of the API.  In production,
-//        please fix the issue with CA certifications on your server and set this flag to FALSE.
-const DISABLE_SSL_CHECKS = FALSE;
-
+        const REDIRECT_URI = 'http://localhost/tokengrab/';
+        const AUTHORIZATION_ENDPOINT = 'https://api.sandbox.inbloom.org/api/oauth/authorize';
+        const TOKEN_ENDPOINT = 'https://api.sandbox.inbloom.org/api/oauth/token';
 
 
 // If the session verification code is not set, redirect to the SLC Sandbox authorization endpoint
 if (!isset($_GET['code'])) {
-  $url = 'https://api.sandbox.slcedu.org/api/oauth/authorize?client_id=' . CLIENT_ID . '&redirect_uri=' . REDIRECT_URI;
+  $url = 'https://api.sandbox.inbloom.org/api/oauth/authorize?client_id=' . CLIENT_ID . '&redirect_uri=' . REDIRECT_URI;
   header('Location: ' . $url);
   die('Redirect');
 }
 else {
 
-  $url = 'https://api.sandbox.slcedu.org/api/oauth/token?client_id=' . CLIENT_ID . '&client_secret=' . CLIENT_SECRET . '&grant_type=authorization_code&redirect_uri=' . REDIRECT_URI . '&code=' . $_GET['code'];
+  $url = 'https://api.sandbox.inbloom.org/api/oauth/token?client_id=' . CLIENT_ID . '&client_secret=' . CLIENT_SECRET . '&grant_type=authorization_code&redirect_uri=' . REDIRECT_URI . '&code=' . $_GET['code'];
 
   $ch = curl_init();
 
@@ -33,13 +26,6 @@ else {
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
   curl_setopt($ch, CURLOPT_HEADER, 'Content-Type: application/vnd.slc+json');
   curl_setopt($ch, CURLOPT_HEADER, 'Accept: application/vnd.slc+json');
-
-if (DISABLE_SSL_CHECKS == TRUE) {
-// WARNING: this would prevent curl from detecting a 'man in the middle' attack
-// See note in settings.php 
-  curl_setopt ($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
-  curl_setopt ($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
-}
 
 //execute post
   $result = curl_exec($ch);
@@ -71,14 +57,14 @@ if (DISABLE_SSL_CHECKS == TRUE) {
     echo 'Accept: application/vnd.slc+json' . "\n";
     echo 'Authorization: bearer ' . $result->access_token;
     echo '</textarea></form>';
-    echo '<h3>Starting API endpoints:</h3>';
+    /* echo '<h3>Starting API endpoints:</h3>';
     echo '<ul>';
-    echo '<li><a href="http://dev.slcedu.org/docs/adding-your-application-sli/adding-user-authentication-applications/checking-session" target="_new">https://api.sandbox.slcedu.org/api/rest/system/session/check</a></li>';
-    echo '<li><a href="http://dev.slcedu.org/docs/sli-rest-api-resources/resource-uris/home" target="_new">https://api.sandbox.slcedu.org/api/rest/v1/home</a></li>';
-    echo '<li><a href="http://dev.slcedu.org/docs/sli-rest-api-resources/resource-uris/sections" target="_new">https://api.sandbox.slcedu.org/api/rest/v1/sections</a></li>';
-    echo '<li><a href="http://dev.slcedu.org/docs/sli-rest-api-resources/resource-uris/students" target="_new">https://api.sandbox.slcedu.org/api/rest/v1/students</a></li>';
-    echo '<li><a href="http://dev.slcedu.org/docs/sli-rest-api-resources/resource-uris/grades" target="_new">https://api.sandbox.slcedu.org/api/rest/v1/grades</a></li>';
-    echo '</ul>';
+    echo '<li><a href="http://dev.inbloom.org/docs/adding-your-application-sli/adding-user-authentication-applications/checking-session" target="_new">https://api.sandbox.inbloom.org/api/rest/system/session/check</a></li>';
+    echo '<li><a href="http://dev.inbloom.org/docs/sli-rest-api-resources/resource-uris/home" target="_new">https://api.sandbox.inbloom.org/api/rest/v1/home</a></li>';
+    echo '<li><a href="http://dev.inbloom.org/docs/sli-rest-api-resources/resource-uris/sections" target="_new">https://api.sandbox.inbloom.org/api/rest/v1/sections</a></li>';
+    echo '<li><a href="http://dev.inbloom.org/docs/sli-rest-api-resources/resource-uris/students" target="_new">https://api.sandbox.inbloom.org/api/rest/v1/students</a></li>';
+    echo '<li><a href="http://dev.inbloom.org/docs/sli-rest-api-resources/resource-uris/grades" target="_new">https://api.sandbox.inbloom.org/api/rest/v1/grades</a></li>';
+    echo '</ul>'; */
     echo '</body></html>';
   }
 }
